@@ -16,4 +16,19 @@ public class savedField implements Serializable {
         this.Fines = Fines;
         this.ter = ter;
     }
+    public int getXsize() {
+        return xsize;
+    }
+    public int getYsize() {
+        return ysize;
+    }
+    public ArrayList<ArrayList<Cell>> getMap() {
+        return Map;
+    }
+    public HashMap<String, float[]> getFines() {
+        return Fines;
+    }
+    public List<String> getTer() {
+        return ter;
+    }
 }

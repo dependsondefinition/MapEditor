@@ -1,7 +1,5 @@
 import java.util.*;
 
-import static java.lang.String.valueOf;
-
 public class Field {
     private int xsize;
     private int ysize;
@@ -19,13 +17,13 @@ public class Field {
         Fines.put(ter.get(4), new float[]{2.5f, 3.5f, 3f});
         creation();
     }
-    Field()
+    Field(savedField sField)
     {
-        Fines.put(ter.get(0), new float[]{1f, 1f, 1f});
-        Fines.put(ter.get(1), new float[]{1.2f, 1f, 1.5f});
-        Fines.put(ter.get(2), new float[]{1.5f, 1.8f, 2.2f});
-        Fines.put(ter.get(3), new float[]{2f, 2.2f, 1.2f});
-        Fines.put(ter.get(4), new float[]{2.5f, 3.5f, 3f});
+        this.xsize = sField.getXsize();
+        this.ysize = sField.getYsize();
+        this.Map = sField.getMap();
+        this.Fines = sField.getFines();
+        this.ter = sField.getTer();
     }
     private void creation()
     {
@@ -107,11 +105,6 @@ public class Field {
     public List<String> getTer()
     {
         return ter;
-    }
-    public void setSize(int x, int y)
-    {
-        xsize = x;
-        ysize = y;
     }
     public int getXsize() {
         return xsize;
