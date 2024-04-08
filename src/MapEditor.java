@@ -94,7 +94,7 @@ public class MapEditor {
         int i = 0, j = field.getYsize() - 1, lim = 0;
         while(true)
         {
-            if(j == field.getYsize() - 1) {
+            if(j == field.getYsize() - 1 || lim == 0) {
                 lim = 1 + field.getYsize() / 3;
                 j = 1;
                 i++;
@@ -112,23 +112,24 @@ public class MapEditor {
             if(lim > 0 && answer.equals("Y")) {
                 System.out.println(field.getTer());
                 tCell.setTerrain(scan.next());
-                lim--;
+                j++;
+                if(!tCell.getTer().equals(field.getTer().getFirst())) {
+                    lim--;
+                }
             }
             else {
                 tCell.setTerrain(tCell.getTer().substring(ANSI_BLUE.length(), tCell.getTer().length() - ANSI_RESET.length()));
-                if(answer.equals("S"))
+                if(answer.equals("N")){
+                    j++;
+                }
+                else if(answer.equals("S") || lim == 0)
                 {
-                    j = field.getYsize() - 2;
+                    lim = 0;
                 }
                 else if(answer.equals("E"))
                 {
                     break;
                 }
-            }
-            j++;
-            if(lim == 0)
-            {
-                j = field.getYsize() - 1;
             }
         }
     }
