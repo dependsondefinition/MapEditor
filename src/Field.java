@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class Field {
+public class Field implements Serializable {
     private int xsize;
     private int ysize;
     private ArrayList<ArrayList<Cell>> Map = new ArrayList<>();
@@ -89,7 +90,7 @@ public class Field {
         return fld;
     }
     public void addTer(String obst){
-        ter.add(obst);
+        ter.add(obst); //ne robit
     }
     public void addFines(float Mfine, float Sfine, float Hfine){
         Fines.put(ter.getLast(), new float[]{Mfine, Sfine, Hfine});

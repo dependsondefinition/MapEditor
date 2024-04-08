@@ -1,26 +1,13 @@
 import java.io.*;
-import java.util.ArrayList;
 
 public class FileManager {
-    private FileWriter output;
-    private FileReader input;
     private savedField sField;
-    private String readFile;
-    private String writeFile;
     FileManager(){}
-    FileManager(String File) {
-        try {
-            input = new FileReader(File);
-            readFile = File;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public void MapSaver(Field fld, String file){
         sField = new savedField(fld.getXsize(), fld.getYsize(), fld.getMap(), fld.getFines(), fld.getTer());
         FileOutputStream save;
         try {
-            save = new FileOutputStream("d://labs_java/maps/" + file + ".ser");
+            save = new FileOutputStream("d:/labs_java/maps/" + file + ".ser");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -32,19 +19,21 @@ public class FileManager {
             throw new RuntimeException(e);
         }
     }
-    public void setOutput(String File) {
+    public Field MapReader(String file) {
+        FileInputStream load;
         try {
-            output = new FileWriter(File);
-            writeFile = File;
-        } catch (IOException e) {
+            load = new FileInputStream("d:/labs_java/maps/" + file + ".ser");
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-    }
-    public void MapReader(Field fld) {
-        fld = new Field(sField);
-        System.out.println(fld);
-    }
-    public FileWriter getOutput() {
-        return output;
+        ObjectInputStream objLoad;
+        try {
+            objLoad = new ObjectInputStream(load);
+            sField = (savedField) objLoad.readObject();
+            objLoad.close();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return new Field(sField);
     }
 }

@@ -1,12 +1,13 @@
 import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class MapEditor {
     private Field field;
-    private FileManager manager;
+    private FileManager manager = new FileManager();
     private Scanner scan = new Scanner(System.in);
     private boolean trueIn = false;
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLUE = "\u001B[34m";
     MapEditor() {
         System.out.println("Welcome to MapEditor");
         System.out.println("Choose action from list:");
@@ -29,18 +30,12 @@ public class MapEditor {
                 newLand();
             }
             else if(num == 2) {
-
+                edit();
             }
             else if(num == 3) {
                 System.out.println("Enter the name of file (WITHOUT EXTENSION)");
-                manager.setOutput("d:/labs_java/maps/" + scan.next() + ".txt");
-                try {
-                    manager.getOutput().write(field.toString());
-                    manager.getOutput().close();
-                    break;
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                manager.MapSaver(field, scan.next());
+                break;
             }
         }
     }
@@ -56,19 +51,18 @@ public class MapEditor {
                 field.randomGen();
             }
             System.out.println(field);
-            manager = new FileManager();
         }
         else if(input == 2)
         {
             System.out.println("Choose file to load from");
-            manager = new FileManager("d:/labs_java/maps/" + scan.next() + ".txt");
-            manager.MapReader(field);
+            field = manager.MapReader(scan.next());
+            System.out.println(field);
         }
         else if(input == 3)
         {
             trueIn = false;
             System.out.println("Choose file to delete map");
-            File delete = new File("d:/labs_java/maps/" + scan.next() + ".txt");
+            File delete = new File("d:/labs_java/maps/" + scan.next() + ".ser");
             if(delete.delete())
             {
                 System.out.println("Map was successfully deleted");
@@ -93,6 +87,39 @@ public class MapEditor {
             field.addTer(obst);
             System.out.println("Enter the fines for Melee, Shooter and Horseman units");
             field.addFines(scan.nextFloat(), scan.nextFloat(), scan.nextFloat());
+        }
+    }
+    private void edit()
+    {
+        int i = 0, j = field.getYsize() - 1, lim = 0;
+        while(true)
+        {
+            if(j == field.getYsize() - 1) {
+                lim = field.getYsize() / 3;
+                j = 1;
+                i++;
+                if(i == field.getXsize() - 1)
+                {
+                    break;
+                }
+            }
+            Cell tCell = field.getMap().get(i).get(j);
+            tCell.setTerrain(ANSI_BLUE + tCell.getTer() + ANSI_RESET);
+            System.out.println(field);
+            System.out.println("Do you want to change this terrain? (Y|N)");
+            if(lim > 0 && scan.next().equals("Y")) {
+                System.out.println(field.getTer());
+                tCell.setTerrain(scan.next());
+                lim--;
+            }
+            else {
+                tCell.setTerrain(tCell.getTer().substring(ANSI_BLUE.length(), tCell.getTer().length() - ANSI_RESET.length()));
+            }
+            j++;
+            if(lim == 0)
+            {
+                j = field.getYsize() - 1;
+            }
         }
     }
 }
