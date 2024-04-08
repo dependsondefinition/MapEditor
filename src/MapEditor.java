@@ -122,7 +122,7 @@ public class MapEditor {
                 if(answer.equals("N")){
                     j++;
                 }
-                else if(answer.equals("S") || lim == 0)
+                else if(answer.equals("S"))
                 {
                     lim = 0;
                 }

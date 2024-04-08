@@ -15,6 +15,7 @@ public class FileManager {
             ObjectOutputStream objSave = new ObjectOutputStream(save);
             objSave.writeObject(sField);
             objSave.close();
+            save.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -31,6 +32,7 @@ public class FileManager {
             objLoad = new ObjectInputStream(load);
             sField = (savedField) objLoad.readObject();
             objLoad.close();
+            load.close();
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
