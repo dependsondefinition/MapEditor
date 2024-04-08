@@ -8,8 +8,8 @@ public class savedField implements Serializable {
     private int ysize;
     private ArrayList<ArrayList<Cell>> Map;
     private HashMap<String, float[]> Fines;
-    private List<String> ter;
-    savedField(int xsize, int ysize, ArrayList<ArrayList<Cell>> Map, HashMap<String, float[]> Fines, List<String> ter) {
+    private ArrayList<String> ter;
+    savedField(int xsize, int ysize, ArrayList<ArrayList<Cell>> Map, HashMap<String, float[]> Fines, ArrayList<String> ter) {
         this.xsize = xsize;
         this.ysize = ysize;
         this.Map = Map;
@@ -28,7 +28,7 @@ public class savedField implements Serializable {
     public HashMap<String, float[]> getFines() {
         return Fines;
     }
-    public List<String> getTer() {
+    public ArrayList<String> getTer() {
         return ter;
     }
 }

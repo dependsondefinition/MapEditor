@@ -95,7 +95,7 @@ public class MapEditor {
         while(true)
         {
             if(j == field.getYsize() - 1) {
-                lim = field.getYsize() / 3;
+                lim = 1 + field.getYsize() / 3;
                 j = 1;
                 i++;
                 if(i == field.getXsize() - 1)
@@ -107,13 +107,23 @@ public class MapEditor {
             tCell.setTerrain(ANSI_BLUE + tCell.getTer() + ANSI_RESET);
             System.out.println(field);
             System.out.println("Do you want to change this terrain? (Y|N)");
-            if(lim > 0 && scan.next().equals("Y")) {
+            System.out.println("To skip this line type S, to end the edit type E");
+            String answer = scan.next();
+            if(lim > 0 && answer.equals("Y")) {
                 System.out.println(field.getTer());
                 tCell.setTerrain(scan.next());
                 lim--;
             }
             else {
                 tCell.setTerrain(tCell.getTer().substring(ANSI_BLUE.length(), tCell.getTer().length() - ANSI_RESET.length()));
+                if(answer.equals("S"))
+                {
+                    j = field.getYsize() - 2;
+                }
+                else if(answer.equals("E"))
+                {
+                    break;
+                }
             }
             j++;
             if(lim == 0)

@@ -1,12 +1,12 @@
 import java.io.Serializable;
 import java.util.*;
 
-public class Field implements Serializable {
+public class Field {
     private int xsize;
     private int ysize;
     private ArrayList<ArrayList<Cell>> Map = new ArrayList<>();
     private HashMap<String, float[]> Fines = new HashMap<>();
-    private List<String> ter = Arrays.asList("*", "!", "#", "@", "^");
+    private ArrayList<String> ter =  new ArrayList<>(Arrays.asList("*", "!", "#", "@", "^"));
     Field(int x, int y)
     {
         xsize = x;
@@ -103,7 +103,7 @@ public class Field implements Serializable {
         return Fines;
     }
 
-    public List<String> getTer()
+    public ArrayList<String> getTer()
     {
         return ter;
     }
