@@ -1,3 +1,6 @@
+import Logic.Cell;
+import Logic.Field;
+
 import java.io.File;
 import java.util.Scanner;
 

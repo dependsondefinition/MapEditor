@@ -1,3 +1,7 @@
+package Logic;
+
+import Logic.Cell;
+
 import java.util.*;
 
 public class Field {
@@ -6,7 +10,7 @@ public class Field {
     private ArrayList<ArrayList<Cell>> Map = new ArrayList<>();
     private HashMap<String, float[]> Fines = new HashMap<>();
     private ArrayList<String> ter =  new ArrayList<>(Arrays.asList("*", "!", "#", "@", "^"));
-    Field(int x, int y)
+    public Field(int x, int y)
     {
         xsize = x;
         ysize = y;
@@ -17,7 +21,7 @@ public class Field {
         Fines.put(ter.get(4), new float[]{2.5f, 3.5f, 3f});
         creation();
     }
-    Field(savedField sField)
+    public Field(savedField sField)
     {
         this.xsize = sField.getXsize();
         this.ysize = sField.getYsize();

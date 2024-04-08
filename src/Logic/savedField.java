@@ -1,14 +1,17 @@
+package Logic;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class savedField implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int xsize;
     private int ysize;
     private ArrayList<ArrayList<Cell>> Map;
     private HashMap<String, float[]> Fines;
     private ArrayList<String> ter;
-    savedField(int xsize, int ysize, ArrayList<ArrayList<Cell>> Map, HashMap<String, float[]> Fines, ArrayList<String> ter) {
+    public savedField(int xsize, int ysize, ArrayList<ArrayList<Cell>> Map, HashMap<String, float[]> Fines, ArrayList<String> ter) {
         this.xsize = xsize;
         this.ysize = ysize;
         this.Map = Map;
