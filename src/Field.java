@@ -90,7 +90,7 @@ public class Field {
         return fld;
     }
     public void addTer(String obst){
-        ter.add(obst); //ne robit
+        ter.add(obst);
     }
     public void addFines(float Mfine, float Sfine, float Hfine){
         Fines.put(ter.getLast(), new float[]{Mfine, Sfine, Hfine});
