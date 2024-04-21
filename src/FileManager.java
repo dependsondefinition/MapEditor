@@ -3,10 +3,10 @@ import Logic.*;
 import java.io.*;
 
 public class FileManager {
-    private savedField sField;
+    private SavedField sField;
     FileManager(){}
     public void MapSaver(Field fld, String file){
-        sField = new savedField(fld.getXsize(), fld.getYsize(), fld.getMap(), fld.getFines(), fld.getTer());
+        sField = new SavedField(fld.getXsize(), fld.getYsize(), fld.getMap(), fld.getFines(), fld.getTer());
         FileOutputStream save;
         try {
             save = new FileOutputStream("d:/labs_java/maps/" + file + ".ser");
@@ -32,7 +32,7 @@ public class FileManager {
         ObjectInputStream objLoad;
         try {
             objLoad = new ObjectInputStream(load);
-            sField = (savedField) objLoad.readObject();
+            sField = (SavedField) objLoad.readObject();
             objLoad.close();
             load.close();
         } catch (IOException | ClassNotFoundException e) {

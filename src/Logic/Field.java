@@ -1,7 +1,5 @@
 package Logic;
 
-import Logic.Cell;
-
 import java.util.*;
 
 public class Field {
@@ -21,7 +19,7 @@ public class Field {
         Fines.put(ter.get(4), new float[]{2.5f, 3.5f, 3f});
         creation();
     }
-    public Field(savedField sField)
+    public Field(SavedField sField)
     {
         this.xsize = sField.getXsize();
         this.ysize = sField.getYsize();
